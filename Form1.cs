@@ -16,7 +16,7 @@ namespace MacroSharpDX
         [DllImport("user32", CharSet = CharSet.Ansi, EntryPoint = "GetAsyncKeyState", ExactSpelling = true, SetLastError = true)]
         private static extern int GetKeyPress(int key);
 
-        public static bool IsOn { get; set; }
+        
 
         public Form1()
         {
@@ -24,26 +24,53 @@ namespace MacroSharpDX
             IsOn = false;
         }
 
-        // Trying the method of macroing in task
+        public static bool IsOn { get; set; }
         private void button1_Click(object sender, EventArgs e)
         {
-            Task task1;
-            if (IsOn == false) { 
-                IsOn = true;
-                task1 = Task.Run(() => MacroActivate(Keys.Space));
-            }
-            else { IsOn = false;}
-
+            starting();
         }
 
-        public static async Task MacroActivate(Keys keys)
-        {
-            while (IsOn == true) { 
-                Keyboard.KeyDown(keys);
-                await Task.Delay(50);
-                Keyboard.KeyUp(keys);
-                await Task.Delay(70);
+        private void starting() {
+            Thread.Sleep(1000);
+            if (IsOn == false)
+            {
+                label1.Text = "Ativo";
+                IsOn = true;
+                Thread thread = new Thread(() => MacroActivate(Keys.Escape));
+                thread.Start();
+
             }
+            else
+            {
+                IsOn = false;
+                label1.Text = "Inativo";
+            }
+            
+        }
+
+        public void MacroActivate(Keys keys)
+        {
+            while (IsOn == true)
+            {
+                Mouse.PressButton(Mouse.MouseKeys.Left);
+                Thread.Sleep(10);
+                /*
+                Keyboard.KeyDown(keys); 
+                Thread.Sleep(10);
+                Keyboard.KeyUp(keys);
+                Thread.Sleep(10);
+                */
+                if (IsOn == false)
+                {
+                    break;
+                }
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //Pressing F2 will enable/disable the macro
+            if (GetKeyPress(113) != 0) { starting();  }
         }
     }
 }    
