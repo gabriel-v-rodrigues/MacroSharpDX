@@ -7,23 +7,24 @@ namespace MacroSharpDX
 
     public partial class MacroSharpDXMain : Form
     {
-        //Only for test and debug
-        /*
-        [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Unicode, EntryPoint = "keybd_event", ExactSpelling = true, SetLastError = true)]
-        public static extern void KEYB_Event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
-
-        [DllImport("user32", CharSet = CharSet.Ansi, ExactSpelling = true, SetLastError = true)]
-        private static extern Keys GetAsyncKeyState(Keys Tecla);
-        */
+        //Start App initializing
+        public MacroSharpDXMain()
+        {
+            InitializeComponent();
+            FirstDefinitions();
+        }
 
         //To receive the keys from the keyboard
         [DllImport("user32", CharSet = CharSet.Ansi, EntryPoint = "GetAsyncKeyState", ExactSpelling = true, SetLastError = true)]
         private static extern int GetKeyPress(int key);
 
-        //Start
-        public MacroSharpDXMain()
+        //Bool check if the macro should be on or off
+        public static bool IsOn { get; set; }
+
+        //Settings in the start of the app
+        private void FirstDefinitions()
         {
-            InitializeComponent();
+            //Starting the Bool
             IsOn = false;
 
             //Listing all keys in a array
@@ -32,8 +33,10 @@ namespace MacroSharpDX
             ArrayList NotAllowedKeys = new ArrayList { Keys.LButton, Keys.RButton, };
 
             //Inserting the keys in the lists
-            foreach (Keys k in keys) {
-                if (!NotAllowedKeys.Contains(k)) { 
+            foreach (Keys k in keys)
+            {
+                if (!NotAllowedKeys.Contains(k))
+                {
                     listKeys.Items.Add(k);
                     designedKeyList.Items.Add(k);
                 }
@@ -41,16 +44,6 @@ namespace MacroSharpDX
             //Template for first choosing
             listKeys.SelectedIndex = listKeys.Items.IndexOf(Keys.F2);
             designedKeyList.SelectedIndex = listKeys.Items.IndexOf(Keys.Space);
-
-        }
-
-        //Bool check if the macro should be on or off
-        public static bool IsOn { get; set; }
-
-        //Button on/off click function
-        private void button1_Click(object sender, EventArgs e)
-        {
-            StartMacroThread();
         }
 
         //Function to start the macro thread, work everything here before sending it to the macro thread
@@ -81,28 +74,37 @@ namespace MacroSharpDX
             
         }
 
-        //Function working in the new thread as a macro
-        public static void MacroActivate(string pressingKey, int delay)
+        //Function working in the new thread as a macro (IMPORTANT: DONT USE IN THE MAIN THREAD)
+        private static void MacroActivate(string pressingKey, int delay)
         {
             //Converting the string from the list to the respective key
             Keys keyPress;
             Enum.TryParse(pressingKey, out keyPress);
-            
+
             //Looping for macro instance
-            while (IsOn == true) {
+            while (IsOn == true)
+            {
                 //Pressing the buttons for the macro
-                Keyboard.KeyDown(keyPress); 
-                Thread.Sleep(delay);
-                Keyboard.KeyUp(keyPress);
-                Thread.Sleep(delay);
+                PressButton(keyPress, delay);
 
                 //check the bool to see if it need to disable
-                if (IsOn == false) {
+                if (IsOn == false)
+                {
                     break;
                 }
             }
         }
 
+        //Pressing key command
+        private static void PressButton(Keys key, int delay)
+        {
+            Keyboard.KeyDown(key);
+            Thread.Sleep(delay);
+            Keyboard.KeyUp(key);
+            Thread.Sleep(delay);
+        }
+
+        //Code that executes everytime a check for the pressed key
         private void timer1_Tick(object sender, EventArgs e)
         {
             //Check if you have selected anything in the listkeys
@@ -120,5 +122,21 @@ namespace MacroSharpDX
                 }
             }
         }
+
+        //Button on/off click function (i dont recommend using the button, only shortcut key)
+        private void button1_Click(object sender, EventArgs e)
+        {
+            StartMacroThread();
+        }
+
+        //Only for test and debug (IGNORE IT)
+        /*
+        [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Unicode, EntryPoint = "keybd_event", ExactSpelling = true, SetLastError = true)]
+        public static extern void KEYB_Event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+
+        [DllImport("user32", CharSet = CharSet.Ansi, ExactSpelling = true, SetLastError = true)]
+        private static extern Keys GetAsyncKeyState(Keys Tecla);
+        */
+
     }
 }    
