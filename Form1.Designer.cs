@@ -40,6 +40,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numericDelay = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericDelay)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,18 +57,19 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 202);
+            this.textBox1.Location = new System.Drawing.Point(12, 221);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(178, 49);
+            this.textBox1.Size = new System.Drawing.Size(178, 32);
             this.textBox1.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(60, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 15);
+            this.label1.Size = new System.Drawing.Size(54, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Disabled";
             // 
@@ -106,7 +108,7 @@
             // designedKeyList
             // 
             this.designedKeyList.FormattingEnabled = true;
-            this.designedKeyList.Location = new System.Drawing.Point(21, 125);
+            this.designedKeyList.Location = new System.Drawing.Point(24, 116);
             this.designedKeyList.Name = "designedKeyList";
             this.designedKeyList.Size = new System.Drawing.Size(157, 23);
             this.designedKeyList.TabIndex = 4;
@@ -114,7 +116,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(48, 107);
+            this.label4.Location = new System.Drawing.Point(51, 98);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 15);
             this.label4.TabIndex = 5;
@@ -122,7 +124,7 @@
             // 
             // numericDelay
             // 
-            this.numericDelay.Location = new System.Drawing.Point(68, 173);
+            this.numericDelay.Location = new System.Drawing.Point(68, 165);
             this.numericDelay.Name = "numericDelay";
             this.numericDelay.Size = new System.Drawing.Size(60, 23);
             this.numericDelay.TabIndex = 6;
@@ -136,17 +138,27 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(68, 155);
+            this.label5.Location = new System.Drawing.Point(68, 147);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 15);
             this.label5.TabIndex = 7;
             this.label5.Text = "Delay Key:";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(66, 203);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 15);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Test Here:";
+            // 
             // MacroSharpDXMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(202, 263);
+            this.ClientSize = new System.Drawing.Size(202, 259);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.numericDelay);
             this.Controls.Add(this.label4);
@@ -168,8 +180,6 @@
         }
 
         #endregion
-
-        private Button button1;
         private TextBox textBox1;
         private Label label1;
         public System.Windows.Forms.Timer timer1;
@@ -180,5 +190,7 @@
         private Label label4;
         private NumericUpDown numericDelay;
         private Label label5;
+        public Button button1;
+        private Label label6;
     }
 }

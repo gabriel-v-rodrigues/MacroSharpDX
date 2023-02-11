@@ -32,11 +32,9 @@ namespace MacroSharpDX
             //Dont allow these keys in the list
             ArrayList NotAllowedKeys = new ArrayList { Keys.LButton, Keys.RButton, };
 
-            //Inserting the keys in the lists
-            foreach (Keys k in keys)
-            {
-                if (!NotAllowedKeys.Contains(k))
-                {
+            //Inserting the keys in the lists, ignoring the not allowed keys
+            foreach (Keys k in keys){
+                if (!NotAllowedKeys.Contains(k)){
                     listKeys.Items.Add(k);
                     designedKeyList.Items.Add(k);
                 }
@@ -47,10 +45,11 @@ namespace MacroSharpDX
         }
 
         //Function to start the macro thread, work everything here before sending it to the macro thread
-        private void StartMacroThread() {
+        public void StartMacroThread() {
             //make it sleep for 1 sec, so it don't stutter
             Thread.Sleep(1000);
-            
+
+            //Enabling the thread
             if (IsOn == false) {
                 //Setting values for the macro Thread and setting the status info
                 label1.Text = "Active";
@@ -82,14 +81,12 @@ namespace MacroSharpDX
             Enum.TryParse(pressingKey, out keyPress);
 
             //Looping for macro instance
-            while (IsOn == true)
-            {
+            while (IsOn == true) {
                 //Pressing the buttons for the macro
                 PressButton(keyPress, delay);
 
                 //check the bool to see if it need to disable
-                if (IsOn == false)
-                {
+                if (IsOn == false) {
                     break;
                 }
             }
