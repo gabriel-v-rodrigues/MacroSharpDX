@@ -42,10 +42,10 @@ namespace MacroSharpDX
         public static bool IsOn { get; set; }
         private void button1_Click(object sender, EventArgs e)
         {
-            starting();
+            StartMacroThread();
         }
 
-        private void starting() {
+        private void StartMacroThread() {
             Thread.Sleep(1000);
             if (IsOn == false)
             {
@@ -55,9 +55,8 @@ namespace MacroSharpDX
                 int delay = Convert.ToInt32(numericDelay.Value);
                 //dont allow delay lower than 1
                 if (delay <= 1) { delay = 2; }
-                Thread thread = new Thread(() => MacroActivate(actualkey,delay));
+                Thread thread = new Thread(() => MacroActivate(actualkey, delay));
                 thread.Start();
-
             }
             else
             {
@@ -67,7 +66,7 @@ namespace MacroSharpDX
             
         }
 
-        public void MacroActivate(string actualkey, int delay)
+        public static void MacroActivate(string actualkey, int delay)
         {
             
             Keys keyX;
@@ -90,11 +89,11 @@ namespace MacroSharpDX
             if (listKeys.SelectedIndex >= 0) {
                 string? actualkey = listKeys.SelectedItem.ToString();
                 //Pressing F2 will enable/disable the macro
-                if (actualkey != null) {
-                    Keys keyX;
-                    Enum.TryParse(actualkey, out keyX);
-                    int key = Convert.ToInt32(keyX);
-                    if (GetKeyPress(key) != 0) { starting();  }
+                Keys keyX;
+                Enum.TryParse(actualkey, out keyX);
+                int key = Convert.ToInt32(keyX);
+                if (GetKeyPress(key) != 0) { 
+                    StartMacroThread();  
                 }
             }
         }
