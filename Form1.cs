@@ -53,6 +53,7 @@ namespace MacroSharpDX
             if (IsOn == false) {
                 //Setting values for the macro Thread and setting the status info
                 label1.Text = "Active";
+                label1.ForeColor = Color.Green;
                 IsOn = true;
                 string? pressingKey = designedKeyList.SelectedItem.ToString();
                 int delay = Convert.ToInt32(numericDelay.Value);
@@ -69,6 +70,7 @@ namespace MacroSharpDX
             else {
                 IsOn = false;
                 label1.Text = "Disabled";
+                label1.ForeColor = Color.Red;
             }
             
         }
