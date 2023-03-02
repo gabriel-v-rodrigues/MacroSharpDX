@@ -29,8 +29,9 @@ namespace MacroSharpDX
 
             //Listing all keys in a array
             ArrayList keys = new ArrayList(Enum.GetValues(typeof(Keys)));
-            //Dont allow these keys in the list
-            ArrayList NotAllowedKeys = new ArrayList { Keys.LButton, Keys.RButton, };
+
+            //Dont allow these keys in the list / Add keys here to not show in the list
+            ArrayList NotAllowedKeys = new ArrayList {/* Keys.LButton, Keys.RButton */ };
 
             //Inserting the keys in the lists, ignoring the not allowed keys
             foreach (Keys k in keys){
@@ -81,12 +82,10 @@ namespace MacroSharpDX
             //Converting the string from the list to the respective key
             Keys keyPress;
             Enum.TryParse(pressingKey, out keyPress);
-
+            bool isMouse = keyPress == Keys.LButton || keyPress == Keys.RButton;
             //Looping for macro instance
             while (IsOn == true) {
-                //Pressing the buttons for the macro
-                PressButton(keyPress, delay);
-
+                PressButton(keyPress, delay, isMouse);
                 //check the bool to see if it need to disable
                 if (IsOn == false) {
                     break;
@@ -95,12 +94,19 @@ namespace MacroSharpDX
         }
 
         //Pressing key command
-        private static void PressButton(Keys key, int delay)
+        private static void PressButton(Keys key, int delay, bool isMouse)
         {
-            Keyboard.KeyDown(key);
-            Thread.Sleep(delay);
-            Keyboard.KeyUp(key);
-            Thread.Sleep(delay);
+            if (isMouse) { 
+                Mouse.MouseKeys mouseKey = key == Keys.LButton ? Mouse.MouseKeys.Left : Mouse.MouseKeys.Right;
+                Mouse.PressButton(mouseKey); //Performing a left click
+                Thread.Sleep(delay);
+            }
+            else { 
+                Keyboard.KeyDown(key);
+                Thread.Sleep(delay);
+                Keyboard.KeyUp(key);
+                Thread.Sleep(delay);
+            }
         }
 
         //Code that executes everytime a check for the pressed key
