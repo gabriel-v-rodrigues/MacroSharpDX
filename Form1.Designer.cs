@@ -28,160 +28,135 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.listKeys = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.designedKeyList = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numericDelay = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numericDelay)).BeginInit();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            button1 = new Button();
+            label1 = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
+            label2 = new Label();
+            listKeys = new ComboBox();
+            label3 = new Label();
+            designedKeyList = new ComboBox();
+            label4 = new Label();
+            numericDelay = new NumericUpDown();
+            label5 = new Label();
+            ((System.ComponentModel.ISupportInitialize)numericDelay).BeginInit();
+            SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(131, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 23);
-            this.button1.TabIndex = 0;
-            this.button1.TabStop = false;
-            this.button1.Text = "On/Off";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 221);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(178, 32);
-            this.textBox1.TabIndex = 1;
+            button1.Location = new Point(131, 5);
+            button1.Name = "button1";
+            button1.Size = new Size(59, 23);
+            button1.TabIndex = 0;
+            button1.TabStop = false;
+            button1.Text = "On/Off";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += Toggle_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(60, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Disabled";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.Red;
+            label1.Location = new Point(60, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(54, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Disabled";
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            timer1.Enabled = true;
+            timer1.Interval = 1;
+            timer1.Tick += Timer_Tick;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Status:";
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(42, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Status:";
             // 
             // listKeys
             // 
-            this.listKeys.FormattingEnabled = true;
-            this.listKeys.Location = new System.Drawing.Point(38, 60);
-            this.listKeys.Name = "listKeys";
-            this.listKeys.Size = new System.Drawing.Size(121, 23);
-            this.listKeys.TabIndex = 4;
+            listKeys.FormattingEnabled = true;
+            listKeys.Location = new Point(38, 60);
+            listKeys.Name = "listKeys";
+            listKeys.Size = new Size(121, 23);
+            listKeys.TabIndex = 4;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(73, 42);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 15);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Shortcut:";
+            label3.AutoSize = true;
+            label3.Location = new Point(41, 42);
+            label3.Name = "label3";
+            label3.Size = new Size(115, 15);
+            label3.TabIndex = 5;
+            label3.Text = "Shortcut to Activate:";
             // 
             // designedKeyList
             // 
-            this.designedKeyList.FormattingEnabled = true;
-            this.designedKeyList.Location = new System.Drawing.Point(24, 116);
-            this.designedKeyList.Name = "designedKeyList";
-            this.designedKeyList.Size = new System.Drawing.Size(157, 23);
-            this.designedKeyList.TabIndex = 4;
+            designedKeyList.FormattingEnabled = true;
+            designedKeyList.Location = new Point(24, 116);
+            designedKeyList.Name = "designedKeyList";
+            designedKeyList.Size = new Size(157, 23);
+            designedKeyList.TabIndex = 4;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(51, 98);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 15);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Macro Key Repeat:";
+            label4.AutoSize = true;
+            label4.Location = new Point(51, 98);
+            label4.Name = "label4";
+            label4.Size = new Size(105, 15);
+            label4.TabIndex = 5;
+            label4.Text = "Macro Key Repeat:";
             // 
             // numericDelay
             // 
-            this.numericDelay.Location = new System.Drawing.Point(68, 165);
-            this.numericDelay.Name = "numericDelay";
-            this.numericDelay.Size = new System.Drawing.Size(60, 23);
-            this.numericDelay.TabIndex = 6;
-            this.numericDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericDelay.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+            numericDelay.DecimalPlaces = 2;
+            numericDelay.Location = new Point(68, 165);
+            numericDelay.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            numericDelay.Name = "numericDelay";
+            numericDelay.Size = new Size(60, 23);
+            numericDelay.TabIndex = 6;
+            numericDelay.TextAlign = HorizontalAlignment.Center;
+            numericDelay.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(68, 147);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 15);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Delay Key:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(66, 203);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 15);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Test Here:";
+            label5.AutoSize = true;
+            label5.Location = new Point(78, 147);
+            label5.Name = "label5";
+            label5.Size = new Size(36, 15);
+            label5.TabIndex = 7;
+            label5.Text = "Delay";
             // 
             // MacroSharpDXMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(202, 259);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.numericDelay);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.designedKeyList);
-            this.Controls.Add(this.listKeys);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "MacroSharpDXMain";
-            this.Text = "DXMacro";
-            ((System.ComponentModel.ISupportInitialize)(this.numericDelay)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(202, 198);
+            Controls.Add(label5);
+            Controls.Add(numericDelay);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(designedKeyList);
+            Controls.Add(listKeys);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(button1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "MacroSharpDXMain";
+            Text = "DXMacro";
+            ((System.ComponentModel.ISupportInitialize)numericDelay).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-        private TextBox textBox1;
         private Label label1;
         public System.Windows.Forms.Timer timer1;
         private Label label2;
@@ -192,6 +167,5 @@
         private NumericUpDown numericDelay;
         private Label label5;
         public Button button1;
-        private Label label6;
     }
 }
